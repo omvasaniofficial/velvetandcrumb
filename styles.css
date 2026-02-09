@@ -1,0 +1,92 @@
+/* <!-- Configuration & Custom Styles --> */
+/* Chosen Palette: Warm Neutrals & Soft Mocha */
+/* Primary: #FDFbf7 (Cream), Secondary: #D2B48C (Tan), Accent: #8B4513 (SaddleBrown) */
+
+:root {
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: #FDFBF7;
+    color: #4A4A4A;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+}
+
+.hero-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('tsi-V2tPEL4zWuo-unsplash.jpg');
+    /* background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Floating image effect for About Section */
+.about-image-stack {
+    position: relative;
+    height: 500px;
+}
+.about-main {
+    width: 80%;
+    height: 400px;
+    object-fit: cover;
+    border: 10px solid white;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+}
+.about-sub {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    width: 50%;
+    height: 250px;
+    object-fit: cover;
+    object-position: bottom;
+    border: 10px solid white;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+}
+
+/* Chart Container Styling per Requirements */
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* max-w-xl equivalent */
+    margin-left: auto;
+    margin-right: auto;
+    height: 350px;
+    max-height: 400px;
+}
+
+@media (max-width: 640px) {
+    .chart-container {
+        height: 300px;
+    }
+}
+
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #D2B48C;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Smooth Scroll behavior */
+html {
+    scroll-behavior: smooth;
+}

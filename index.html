@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velvet & Crumb | Artisan Home Bakery</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+     <link rel="stylesheet" href="styles.css">
+
+    <!-- Application Structure Plan:
+         1. Hero Section: Emotional hook, high-quality visual, main CTA.
+         2. About Section: The "Home Baker" story. Personal connection.
+         3. Trends Analysis: Uses Chart.js to show "Customer Favorites" (Data viz requirement).
+         4. Menu Section: Interactive filtering (JS) of products (Data storage).
+         5. Process/Timeline: Visual step-by-step of how to order (Info Architect).
+         6. Testimonials: Social proof.
+         7. Contact: Call to action.
+    -->
+
+    <!-- Visualization & Content Choices:
+         - Trends Chart: Doughnut chart to show flavor popularity. Goal: Inform/Engage. 
+         - Product Grid: Filterable list. Goal: Organize/Explore.
+         - Icons: Unicode/Tailwind/CSS shapes. No SVG files.
+    -->
+
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="bg-[#FDFBF7] shadow-sm sticky top-0 z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-3xl font-bold text-[#8B4513] tracking-wider" style="font-family: var(--font-heading);">
+                        <a href="index.html">
+                            Velvet & Crumb
+                        </a>
+                    </span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="nav-link text-gray-700 hover:text-[#8B4513] px-3 py-2 text-sm font-medium uppercase tracking-widest">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-[#8B4513] px-3 py-2 text-sm font-medium uppercase tracking-widest">About</a>
+                    <a href="#menu" class="nav-link text-gray-700 hover:text-[#8B4513] px-3 py-2 text-sm font-medium uppercase tracking-widest">Menu</a>
+                    <a href="#stats" class="nav-link text-gray-700 hover:text-[#8B4513] px-3 py-2 text-sm font-medium uppercase tracking-widest">Trends</a>
+                    <a href="#contact" class="bg-[#D2B48C] text-white hover:bg-[#8B4513] px-6 py-2 rounded-full text-sm font-medium transition duration-300 shadow-md">Order Now</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-[#8B4513] focus:outline-none">
+                        <span class="text-2xl">&#9776;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#FDFBF7] border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="index.html" class="block text-gray-700 hover:text-[#8B4513] px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#about" class="block text-gray-700 hover:text-[#8B4513] px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#menu" class="block text-gray-700 hover:text-[#8B4513] px-3 py-2 rounded-md text-base font-medium">Menu</a>
+                <a href="#contact" class="block text-[#8B4513] font-bold px-3 py-2 rounded-md text-base">Order Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg h-screen flex items-center justify-center text-center px-4">
+        <div class="bg-white bg-opacity-90 p-10 md:p-16 rounded-sm shadow-2xl max-w-3xl transform transition duration-500 hover:scale-[1.01]">
+            <p class="text-[#D2B48C] uppercase tracking-[0.2em] text-sm font-bold mb-4">Handcrafted in Small Batches</p>
+            <h1 class="text-5xl md:text-7xl text-[#4A4A4A] mb-6 leading-tight">Baking Life <br><span class="text-[#8B4513] italic">Sweeter</span></h1>
+            <p class="text-gray-600 text-lg mb-8 max-w-lg mx-auto font-light">
+                From our home kitchen to your celebration. We specialize in bespoke cakes, artisanal pastries, and moments of pure joy.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#menu" class="bg-[#8B4513] text-white px-8 py-3 rounded-none border border-[#8B4513] hover:bg-transparent hover:text-[#8B4513] transition duration-300 uppercase tracking-wider text-sm">View Menu</a>
+                <a href="#about" class="bg-transparent text-[#8B4513] px-8 py-3 rounded-none border border-[#8B4513] hover:bg-[#8B4513] hover:text-white transition duration-300 uppercase tracking-wider text-sm">Meet the Baker</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro / Context Section -->
+    <section class="py-16 bg-white border-b border-[#E5E5E5]">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl text-[#4A4A4A] mb-6">Welcome to My Kitchen</h2>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                Every cake tells a story. At Velvet & Crumb, we don't just bake; we craft edible art tailored to your specific taste and occasion. 
+                Explore our menu below to see our signature creations, or check out our flavor trends to see what our local community is loving right now.
+            </p>
+            <div class="mt-8 text-[#D2B48C] text-4xl">
+                &#10087;
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section: Meet the Baker -->
+    <section id="about" class="py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Visuals -->
+                <div class="about-image-stack">
+                    <img src="1.jpg" alt="Baker at work" class="about-main rounded-sm">
+                    <img src="gabriel-tovar-2oJFUsjqZ_g-unsplash.jpg"Ingredients" class="about-sub rounded-sm">
+                    <!-- <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80" alt="Baker at work" class="about-main rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" alt="Ingredients" class="about-sub rounded-sm"> -->
+                </div>
+                <!-- Content -->
+                <div>
+                    <span class="text-[#D2B48C] font-bold tracking-widest uppercase block mb-4">Our Story</span>
+                    <h2 class="text-4xl md:text-5xl text-[#4A4A4A] mb-8">Hi, I'm Anjali Patel. <br><span class="text-[#8B4513]">The heart behind the oven.</span></h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        What started as a childhood fascination with my grandmother's flour-dusted apron has grown into a lifelong passion for the art of baking. After years of perfecting textures and balancing flavors, I decided to open the doors of my home kitchen to the community.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed font-light italic">
+                        "I believe that every celebration, no matter how small, deserves a cake that tastes as extraordinary as it looks. No preservatives, no shortcuts—just pure, honest ingredients and a whole lot of love."
+                    </p>
+                    <div class="grid grid-cols-2 gap-8 py-6 border-t border-gray-100">
+                        <div>
+                            <h4 class="font-bold text-[#8B4513] mb-1">Local Sourcing</h4>
+                            <p class="text-sm text-gray-500">We bake eggless cakes using fresh milk and quality items from our neighbourhood.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[#8B4513] mb-1">Bespoke Only</h4>
+                            <p class="text-sm text-gray-500">Every single order is custom-made specifically for your event.</p>
+                        </div>
+                    </div>
+                    <a href="#contact" class="inline-block mt-8 text-[#8B4513] font-bold border-b-2 border-[#D2B48C] pb-1 hover:text-[#D2B48C] transition-colors">Bake My Dream Cake &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats & Trends Section (Data Visualization) -->
+    <section id="stats" class="py-20 bg-[#F8F5F2]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div>
+                    <p class="text-[#D2B48C] font-bold tracking-widest uppercase mb-2">Customer Favorites</p>
+                    <h2 class="text-4xl text-[#4A4A4A] mb-6">What's Trending in 2026?</h2>
+                    <p class="text-gray-600 mb-6">
+                        We analyze our orders monthly to ensure we are always stocking the freshest ingredients for your favorite flavors. 
+                        Currently, our <strong>Salted Caramel</strong> and classic <strong>Red Velvet</strong> are stealing the show, capturing over 50% of monthly orders.
+                    </p>
+                    
+                    <!-- Simple Stats Grid -->
+                    <div class="grid grid-cols-2 gap-6 mt-8">
+                        <div class="p-6 bg-white shadow-sm border-l-4 border-[#D2B48C]">
+                            <span class="block text-3xl font-bold text-[#8B4513] mb-1" id="stat-cakes">0+</span>
+                            <span class="text-sm text-gray-500 uppercase tracking-wide">Cakes Baked</span>
+                        </div>
+                        <div class="p-6 bg-white shadow-sm border-l-4 border-[#D2B48C]">
+                            <span class="block text-3xl font-bold text-[#8B4513] mb-1" id="stat-clients">0%</span>
+                            <span class="text-sm text-gray-500 uppercase tracking-wide">Repeat Customers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart Container -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-center text-lg font-semibold text-gray-700 mb-4">Top Flavor Orders (This Month)</h3>
+                    <div class="chart-container">
+                        <canvas id="flavorChart"></canvas>
+                    </div>
+                    <p class="text-center text-xs text-gray-400 mt-4">*Based on last 15 orders</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section (Interactive) -->
+    <section id="menu" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl text-[#4A4A4A] mb-4">Curated Menu</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">Filter through our categories to find the perfect treat for your occasion. All items are made to order.</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12" id="menu-filters">
+                <button class="filter-btn active bg-[#8B4513] text-white px-6 py-2 rounded-full text-sm font-medium transition" data-filter="all">All</button>
+                <button class="filter-btn bg-gray-100 text-gray-600 hover:bg-[#D2B48C] hover:text-white px-6 py-2 rounded-full text-sm font-medium transition" data-filter="cake">Signature Cakes</button>
+                <button class="filter-btn bg-gray-100 text-gray-600 hover:bg-[#D2B48C] hover:text-white px-6 py-2 rounded-full text-sm font-medium transition" data-filter="cupcake">Cupcakes</button>
+                <button class="filter-btn bg-gray-100 text-gray-600 hover:bg-[#D2B48C] hover:text-white px-6 py-2 rounded-full text-sm font-medium transition" data-filter="wedding">Wedding</button>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
+                <!-- Javascript will populate this -->
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works (Process) -->
+    <section class="py-16 bg-[#FDFBF7] border-t border-b border-[#E5E5E5]">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl text-center mb-12">From Order to Slice</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div class="relative">
+                    <div class="w-16 h-16 mx-auto bg-[#D2B48C] text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">1</div>
+                    <h3 class="text-lg font-bold mb-2">Browse & Select</h3>
+                    <p class="text-sm text-gray-600">Choose your flavors and size from our menu.</p>
+                </div>
+                <div class="relative">
+                    <div class="w-16 h-16 mx-auto bg-[#D2B48C] text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">2</div>
+                    <h3 class="text-lg font-bold mb-2">Customize</h3>
+                    <p class="text-sm text-gray-600">Tell us about your theme, colors, and message.</p>
+                </div>
+                <div class="relative">
+                    <div class="w-16 h-16 mx-auto bg-[#D2B48C] text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">3</div>
+                    <h3 class="text-lg font-bold mb-2">We Bake</h3>
+                    <p class="text-sm text-gray-600">Fresh ingredients, baked with love in our kitchen.</p>
+                </div>
+                <div class="relative">
+                    <div class="w-16 h-16 mx-auto bg-[#8B4513] text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">4</div>
+                    <h3 class="text-lg font-bold mb-2">Enjoy</h3>
+                    <p class="text-sm text-gray-600">Pickup or delivery to your doorstep.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Footer -->
+    <footer id="contact" class="bg-[#2C2C2C] text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Brand Info -->
+                <div>
+                    <h2 class="text-3xl font-bold text-[#D2B48C] mb-6" style="font-family: var(--font-heading);">
+                        <a href="index.html">
+                            Velvet & Crumb
+                        </a>
+                    </h2>
+                    <p class="text-gray-400 mb-6 max-w-sm">
+                        An artisan home bakery dedicated to making your special moments sweeter.
+                    </p>
+                    <div class="space-y-3">
+                        <p class="flex items-center text-gray-300"><span class="text-[#D2B48C] mr-3">&#9993;</span> hello@velvetandcrumb.com</p>
+                        <p class="flex items-center text-gray-300"><span class="text-[#D2B48C] mr-3">&#9742;</span> 123-456-7890</p>
+                        <p class="flex items-center text-gray-300"><span class="text-[#D2B48C] mr-3">&#8962;</span> 123 Baker Street, Sweet City</p>
+                    </div>
+                </div>
+
+                <!-- Simple Contact Form -->
+                <div class="bg-white/5 p-8 rounded-lg backdrop-blur-sm">
+                    <h3 class="text-xl font-bold mb-4 text-[#D2B48C]">Inquire Now</h3>
+                    <form id="contact-form" class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <input type="text" placeholder="Name" class="w-full bg-white/10 border border-gray-600 rounded px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-[#D2B48C]">
+                            <input type="email" placeholder="Email" class="w-full bg-white/10 border border-gray-600 rounded px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-[#D2B48C]">
+                        </div>
+                        <textarea rows="3" placeholder="What are you craving?" class="w-full bg-white/10 border border-gray-600 rounded px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-[#D2B48C]"></textarea>
+                        <button type="submit" class="w-full bg-[#D2B48C] hover:bg-[#8B4513] text-white font-bold py-3 rounded transition duration-300">Send Inquiry</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-500 text-sm">
+                &copy; 2026 Velvet & Crumb. Designed with love.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
